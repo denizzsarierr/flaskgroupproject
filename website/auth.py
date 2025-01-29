@@ -11,9 +11,9 @@ auth = Blueprint("auth",__name__)
 @auth.route('/login',methods = ["GET","POST"])
 def login():
 
-        form = request.form
-        
-        if request.method == "POST":
+    form = request.form
+
+    if request.method == "POST":
 
             username = form.get('username')
             password = form.get('password')
@@ -36,7 +36,7 @@ def login():
                 flash("User doesn't exist",category="error")
 
         
-        return render_template("login.html",user = current_user)
+    return render_template("login.html",user = current_user)
 
 
 
