@@ -1,6 +1,10 @@
 #DB - App Configuration'
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from os import path
 
+db = SQLAlchemy()
+DB_NAME = "database.db"
 
 def create_app():
 
@@ -16,3 +20,10 @@ def create_app():
 
 
     return app
+
+
+def create_db(app):
+
+    with app.app_context():
+        if not path.exists(f"/website" + {DB_NAME}):
+            db.create_all()
