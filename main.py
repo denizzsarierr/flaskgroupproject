@@ -1,5 +1,8 @@
-print("Hello World")
+from website import create_app
 
-print('SA')
 
-print("Try2")
+app = create_app()
+
+if __name__ == "__main__":
+    
+    app.run(debug=True)
