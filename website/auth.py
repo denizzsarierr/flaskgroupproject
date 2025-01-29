@@ -1,9 +1,9 @@
 #User Loggin and Signup - Authorization
 from flask import Blueprint,render_template,request,flash,redirect,url_for
-from .models import User
+from .models import User,db
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import login_user,current_user
-
+from . import models
 
 auth = Blueprint("auth",__name__)
 
