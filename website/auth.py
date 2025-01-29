@@ -12,30 +12,30 @@ auth = Blueprint("auth",__name__)
 def login():
 
     form = request.form
-    
+
     if request.method == "POST":
 
-        username = form.get('username')
-        password = form.get('password')
+            username = form.get('username')
+            password = form.get('password')
 
-        user = User.query.filter_by(username = username).first()
+            user = User.query.filter_by(username = username).first()
 
 
-        if user:
+            if user:
 
-            if check_password_hash(user.password,password):
+                if check_password_hash(user.password,password):
 
-                flash("Succesfully Logged In",category="success")
-                login_user(user,remember = True)
-                #Session will continue until loggingout
-                return redirect(url_for("views.home"))
+                    flash("Succesfully Logged In",category="success")
+                    login_user(user,remember = True)
+                    #Session will continue until loggingout
+                    return redirect(url_for("views.home"))
+                else:
+                    flash("Wrong Password",category="danger")
             else:
-                flash("Wrong Password",category="danger")
-        else:
 
-            flash("User doesn't exist",category="error")
+                flash("User doesn't exist",category="error")
 
-    
+        
     return render_template("login.html",user = current_user)
 
 
