@@ -41,10 +41,30 @@ def login():
 
 
 
-@auth.route("/sign-up",methods = ["GET","POST"])
-def signup():
+@auth.route('/sign-up',methods = ["GET","POST"])
+def sign_up():
 
-    return render_template('signup.html')
+    form = request.form
+    
+    if request.method == "POST":
+        email = form.get("email")
+        username = form.get("username")
+        password1 = form.get("password1")
+        password2 = form.get("password2")
+
+        if len(email) > 0 and len(username) > 0 and len(password1) > 0 and len(password2) > 0:
+            new_user = models.User(email=email,username=username,password = generate_password_hash(password1,method='pbkdf2:sha256'))
+            db.session.add(new_user)
+            db.session.commit()
+            login_user(new_user,remember=True)
+            flash("Account Created",category="success")
+            return redirect(url_for('views.home'))
+
+
+
+
+
+    return render_template('signup.html',user = current_user)
 
 @auth.route('/logout')
 def logout():
