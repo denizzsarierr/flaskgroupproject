@@ -40,3 +40,28 @@ def delete_note():
             db.session.commit()
     
     return jsonify({})
+@views.route('/profile',methods = ["GET","POST"])
+@login_required
+def profile():
+
+    if request.method == "POST":
+
+        return redirect(url_for('views.mynotes'))
+        
+        
+
+
+
+    return render_template('profile.html',user = current_user)
+
+@views.route('/mynotes',methods = ["GET","POST"])
+@login_required
+def mynotes():
+
+    if request.method == "POST":
+        pass
+
+
+    return render_template("mynotes.html",user = current_user)
+
+

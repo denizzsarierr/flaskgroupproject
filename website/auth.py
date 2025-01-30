@@ -16,7 +16,7 @@ def login():
     if request.method == "POST":
 
             username = form.get('username')
-            password = form.get('password')
+            password = form.get('password1')
 
             user = User.query.filter_by(username = username).first()
 
