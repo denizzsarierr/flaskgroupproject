@@ -1,0 +1,103 @@
+{% extends "base.html" %} {% block title %}Profile{% endblock title %}
+{% block style %}
+<style>
+  .profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    background: #f9fafb;
+  }
+
+  .profile-box {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 50px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    max-width: 450px;
+    width: 100%;
+    height: 550px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .profile-img {
+    border-radius: 50%;
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 5px solid #ffffff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+  }
+
+  h3 {
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+    margin-top: -20px;
+  }
+
+  .profile-details-box {
+    background: #f1f5f9;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    margin: 10px 0;
+    text-align: left;
+  }
+
+  .profile-details-title {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+  }
+
+  .profile-details-text {
+    font-size: 1.1rem;
+    color: #666;
+  }
+
+  .btn-primary {
+    background-color: #007bff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    color: white;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+  }
+
+  .btn-primary:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px);
+  }
+
+  .mt-3 {
+    margin-top: 20px;
+  }
+</style>
+{% endblock style %} {% block content %}
+<div class="profile-container">
+  <div class="profile-box">
+    <div>
+      <h3>Profile</h3>
+      <div class="profile-details-box">
+        <div class="profile-details-title">Bio</div>
+        <p class="profile-details-text">This is your bio.</p>
+      </div>
+      <div class="profile-details-box">
+        <div class="profile-details-title">Email</div>
+        <p class="profile-details-text">email@example.com</p>
+      </div>
+    </div>
+    <a href="/mynotes" class="btn btn-primary mt-3">My Notes</a>
+    <a href="/delete-account" class="btn btn-primary mt-3"
+      >Delete Account</a
+    >
+  </div>
+</div>
+{% endblock content %}
