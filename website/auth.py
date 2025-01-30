@@ -1,6 +1,6 @@
 #User Loggin and Signup - Authorization
 from flask import Blueprint,render_template,request,flash,redirect,url_for
-from .models import User,db
+from .models import User,db,Note
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import login_user,current_user,login_required,logout_user
 from . import models
@@ -72,3 +72,13 @@ def logout():
 
     logout_user()
     return redirect(url_for('auth.login'))
+
+@auth.route('/delete-account')
+@login_required
+def delete_account():
+
+
+    db.session.query(User).filter(User.id == current_user.id).delete()
+    db.session.query(Note).filter(Note.user_id == current_user.id).delete()
+    db.session.commit()
+    return redirect(url_for('auth.sign_up'))
