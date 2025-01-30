@@ -1,25 +1,145 @@
 {% extends "base.html" %} {% block title %} Changed {% endblock title
 %} {% block content %}
-
 <form method="POST">
-  <br /><br /><br />
-  <ul class="list-group list-group-flush" id="notes ">
-    {% for note in user.notes %}
-    <li class="list-group-item">{{note.data}}</li>
-    <button
-      type="button"
-      class="close"
-      onClick="deleteNote({{note.id}})"
-    >
-      <span aria-hidden="true">&times;</span>
-    </button>
-    {% endfor %}
-  </ul>
-  <textarea name="note" id="note" class="form-control"></textarea>
+  <!-- "What's happening?" section -->
   <br />
+  <div class="content">
+    <h2>What's happening?</h2>
+    <textarea
+      name="note"
+      id="note"
+      class="form-control"
+      placeholder="Write your notes..."
+    ></textarea>
+  </div>
   <div style="text-align: center">
     <button type="submit" class="btn btn-primary">Add Note</button>
   </div>
 </form>
+
+<br />
+
+<h3>Latest Notes</h3>
+<hr />
+<ul class="list-group list-group-flush" id="notes">
+  {% for note in notes %}
+  <li class="list-group-item note-item">
+    <div class="note-content">
+      <p>{{ note.data }}</p>
+
+      <span class="note-meta">
+        <strong>{{ note.user.username }}</strong>
+        <small>{{ note.date }}</small>
+      </span>
+    </div>
+    <button
+      type="button"
+      class="close"
+      onClick="deleteNote({{ note.id }})"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </li>
+  {% endfor %}
+</ul>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f8fa;
+  }
+
+  .note-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: #ffffff;
+    padding: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+    width: 100%;
+    border-radius: 30px; /* More rounded corners */
+  }
+
+  .note-content {
+    width: 85%;
+  }
+
+  /* Meta (author & date) styling */
+  .note-meta {
+    display: block;
+    font-size: 12px;
+    color: #657786;
+    margin-top: 5px;
+  }
+
+  .note-meta strong {
+    color: #14171a; /* Author name color */
+  }
+
+  .note-meta small {
+    margin-left: 5px;
+    font-style: italic;
+  }
+
+  /* Close button styling */
+  .close {
+    background-color: transparent;
+    border: none;
+    color: #657786;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .close:hover {
+    color: #e0245e;
+  }
+
+  /* Styling for the textarea (similar to "What's happening?") */
+  .form-control {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 8px;
+    border: 1px solid #e1e8ed;
+    resize: none;
+    height: 80px;
+  }
+
+  /* Button styling */
+  .btn-primary {
+    background-color: #1da1f2;
+    color: white;
+    padding: 8px 16px;
+    font-size: 14px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+
+  .btn-primary:hover {
+    background-color: #1991db;
+  }
+
+  .content {
+    max-width: 600px; /* Set a max width for a more compact view */
+    margin: 0 auto; /* Center the content */
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+  }
+
+  /* Title of the "What's happening?" prompt */
+  .content h2 {
+    font-size: 18px; /* Smaller font size for the header */
+    color: #14171a;
+    margin-bottom: 10px;
+  }
+</style>
 
 {% endblock content %}
