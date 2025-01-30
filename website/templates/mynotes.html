@@ -60,13 +60,22 @@
     <h2>My Notes</h2>
     {% if user.notes|length == 0 %}
     <p class="empty-message">
-      You don't have any notes yet.
-      <a href="/">Start creating some!</a>
+      You don't have any notes yet.<a href="/"
+        >Start creating some!</a
+      >
     </p>
     {% else %}
     <ul class="list-group">
       {% for note in user.notes %}
-      <li class="list-group-item">{{ note.data }}</li>
+      <li class="list-group-item">
+        {{ note.data }}<button
+          type="button"
+          class="close"
+          onClick="deleteNote({{ note.id }})"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </li>
       {% endfor %}
     </ul>
     {% endif %}
