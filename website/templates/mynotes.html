@@ -1,5 +1,25 @@
 {% extends "base.html" %} {% block style %}
 <style>
+  /* Profile picture styling */
+  .profile-picture {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-left: 10px;
+    border: 2px solid white; /* Add a small border for better visibility */
+  }
+
+  @media (max-width: 768px) {
+    .navbar-nav .nav-item {
+      padding: 5px 10px;
+    }
+
+    .profile-picture {
+      width: 30px;
+      height: 30px;
+    }
+  }
   .notes-container {
     display: flex;
     justify-content: center;

@@ -6,6 +6,7 @@ from . import models,db
 import json
 
 
+
 views = Blueprint("views",__name__)
 
 @views.route('/',methods = ["GET","POST"])
